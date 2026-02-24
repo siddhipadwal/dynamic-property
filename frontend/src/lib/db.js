@@ -1,8 +1,9 @@
 import mysql from 'mysql2/promise';
 
 // Get database configuration from environment variables
+// Use 127.0.0.1 instead of localhost to force IPv4 connection (fixes Hostinger IPv6 issue)
 const dbConfig = {
-  host: process.env.DB_HOST || 'localhost',
+  host: process.env.DB_HOST || '127.0.0.1',
   user: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'property_db',

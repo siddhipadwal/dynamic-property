@@ -10,8 +10,9 @@ const nextConfig = {
   },
   
   // Ensure environment variables are available at runtime
+  // Default to 127.0.0.1 to fix IPv6 issue on Hostinger
   env: {
-    DB_HOST: process.env.DB_HOST,
+    DB_HOST: process.env.DB_HOST || '127.0.0.1',
     DB_USER: process.env.DB_USER,
     DB_NAME: process.env.DB_NAME,
     DB_PASSWORD: process.env.DB_PASSWORD,
