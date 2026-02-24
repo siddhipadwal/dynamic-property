@@ -1,0 +1,50 @@
+{
+  "properties": [
+    {
+      "id": "1",
+      "name": "ALPINE PRIMO",
+      "location": "Andheri West, Mumbai",
+      "image": "/assets/images/latest-properties/properties1.jpg",
+      "pricePerSqFt": 25000,
+      "areaMin": 650,
+      "areaMax": 1200,
+      "possessionDate": "2025-12-31",
+      "description": "Luxury residential project in the heart of Andheri West",
+      "category": "Residential",
+      "status": "Under Construction",
+      "addedDate": "2024-01-15"
+    },
+    {
+      "id": "2",
+      "name": "SAYBA NOOR 2.0",
+      "location": "Jogeshwari, Mumbai",
+      "image": "/assets/images/latest-properties/properties2.jpg",
+      "pricePerSqFt": 22000,
+      "areaMin": 500,
+      "areaMax": 950,
+      "possessionDate": "2024-06-30",
+      "description": "Modern apartments with premium amenities",
+      "category": "Residential",
+      "status": "Ready to Move",
+      "addedDate": "2024-02-20"
+    },
+    {
+      "id": "3",
+      "name": "LODHA CELESTIA",
+      "location": "Powai, Mumbai",
+      "image": "/assets/images/latest-properties/properties3.jpg",
+      "pricePerSqFt": 28000,
+      "areaMin": 800,
+      "areaMax": 1500,
+      "possessionDate": "2025-03-31",
+      "description": "Ultra-luxury towers with world-class facilities",
+      "category": "Residential",
+      "status": "Under Construction",
+      "addedDate": "2024-03-10"
+    }
+  ],
+  "admin": {
+    "username": "admin",
+    "password": "admin123"
+  }
+}
