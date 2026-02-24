@@ -1,0 +1,12 @@
+
+# Hostinger Environment Variables for Next.js
+# IMPORTANT: Next.js doesn't read .htaccess directly!
+# You must set these in Hostinger hPanel under: Settings > PHP > Environment Variables
+
+# For reference, these are the values that should be set:
+# DB_HOST = localhost (NOT 127.0.0.1)
+# DB_USER = u812564579_Shivank
+# DB_PASSWORD = Bless@Shivank#321
+# DB_NAME = u812564579_Shivank
+
+# This .htaccess is for PHP compatibility only
