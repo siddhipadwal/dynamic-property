@@ -33,8 +33,8 @@ const initDatabase = async () => {
     });
     
     connection = await tempPool.getConnection();
-    await connection.execute('CREATE DATABASE IF NOT EXISTS property_db');
-    console.log('Database property_db created or already exists');
+    await connection.execute(`CREATE DATABASE IF NOT EXISTS \`${dbConfig.database}\``);
+    console.log(`Database ${dbConfig.database} created or already exists`);
     connection.release();
     await tempPool.end();
   } catch (error) {

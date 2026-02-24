@@ -31,13 +31,16 @@ const createTransporter = () => {
   return nodemailer.createTransport(EMAIL_CONFIG);
 };
 
+// Get database name from environment
+const DB_NAME = process.env.DB_NAME || 'property_db';
+
 // Function to create database and table if they don't exist
 async function ensureTableExists(connection) {
   try {
     // First create the database if it doesn't exist
-    await connection.execute('CREATE DATABASE IF NOT EXISTS property_db');
+    await connection.execute(`CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\``);
     // Use the database
-    await connection.execute('USE property_db');
+    await connection.execute(`USE \`${DB_NAME}\``);
   } catch (e) {
     console.log('Database creation skipped:', e.message);
   }

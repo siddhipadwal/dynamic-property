@@ -1,4 +1,17 @@
-# Complete Guide to Connect Database on Hostinger
+# Complete Guide to Connect Database
+
+## For Local Development (Running on Your Computer)
+Use XAMPP MySQL credentials:
+- **DB_HOST**: localhost
+- **DB_USER**: root
+- **DB_PASSWORD**: (leave empty)
+- **DB_NAME**: property_db
+
+The `.env.local` file is already configured for local development.
+
+---
+
+## For Hosting on Hostinger
 
 ## Step 1: Upload Files to Hostinger
 1. Go to Hostinger hPanel > Files > File Manager

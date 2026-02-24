@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
 
+// Get database name from environment
+const DB_NAME = process.env.DB_NAME || 'property_db';
+
 // This endpoint ensures the contact_inquiries table has the required columns
 export async function GET(request) {
   let connection;
@@ -9,8 +12,8 @@ export async function GET(request) {
     connection = await pool.getConnection();
     
     // Create database if not exists
-    await connection.execute('CREATE DATABASE IF NOT EXISTS property_db');
-    await connection.execute('USE property_db');
+    await connection.execute(`CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\``);
+    await connection.execute(`USE \`${DB_NAME}\``);
     
     // Check if is_read column exists
     const [columns] = await connection.execute('SHOW COLUMNS FROM contact_inquiries LIKE "is_read"');
