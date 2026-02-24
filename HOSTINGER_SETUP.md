@@ -13,10 +13,22 @@ In Hostinger, you need to set environment variables so your Next.js app can acce
 1. Go to **Settings** > **PHP** > **PHP Options**
 2. Look for **Environment Variables** section
 3. Add these variables:
+
+**Database Variables:**
    - `DB_HOST` = `localhost`
    - `DB_USER` = `u812564579_Shivank`
    - `DB_PASSWORD` = `Bless@Shivank#321`
    - `DB_NAME` = `u812564579_Shivank`
+
+**SMTP Email Variables:**
+   - `SMTP_HOST` = `smtp.gmail.com`
+   - `SMTP_PORT` = `587`
+   - `SMTP_USER` = `dynamicpropertiesseo@gmail.com`
+   - `SMTP_PASS` = `your_app_password_here` (See Step 6 below)
+   - `FROM_EMAIL` = `dynamicpropertiesseo@gmail.com`
+   - `TO_EMAIL` = `dynamicpropertiesseo@gmail.com`
+   - `TO_EMAIL_2` = `info@dynamicproperties.in`
+
 4. Save changes
 
 ### Option B: Using .htaccess
@@ -26,6 +38,13 @@ SetEnv DB_HOST localhost
 SetEnv DB_USER u812564579_Shivank
 SetEnv DB_PASSWORD Bless@Shivank#321
 SetEnv DB_NAME u812564579_Shivank
+SetEnv SMTP_HOST smtp.gmail.com
+SetEnv SMTP_PORT 587
+SetEnv SMTP_USER dynamicpropertiesseo@gmail.com
+SetEnv SMTP_PASS your_app_password_here
+SetEnv FROM_EMAIL dynamicpropertiesseo@gmail.com
+SetEnv TO_EMAIL dynamicpropertiesseo@gmail.com
+SetEnv TO_EMAIL_2 info@dynamicproperties.in
 ```
 
 ## Step 3: Import Database (If Not Already Done)
@@ -61,6 +80,20 @@ After setting up, test your website. If you see "Access denied" errors:
 - **Database:** u812564579_Shivank
 - **User:** u812564579_Shivank
 - **Password:** Bless@Shivank#321
+
+## Step 6: Gmail App Password Setup (Required for SMTP)
+Since your website uses Gmail, you need an **App Password** instead of your regular Gmail password:
+
+1. Go to your **Google Account** (myaccount.google.com)
+2. Click **Security** on the left menu
+3. Under "How you sign in to Google", enable **2-Step Verification** (if not already on)
+4. After enabling 2-Step Verification, search for "App Passwords" in the search bar
+5. Create a new App Password:
+   - Name: "Dynamic Properties Website"
+6. Copy the 16-character password shown
+7. Use this password for `SMTP_PASS` in your environment variables
+
+**Important:** Replace `your_app_password_here` in the .env.local or Hostinger settings with this App Password.
 
 ---
 If you need more help, check Hostinger's Knowledge Base or contact their support.
