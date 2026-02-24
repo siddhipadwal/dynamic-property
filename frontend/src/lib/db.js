@@ -1,10 +1,18 @@
 import mysql from 'mysql2/promise';
 
+// Get database configuration from environment variables
+const dbConfig = {
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_NAME || 'property_db',
+};
+
 const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'property_db',
+  host: dbConfig.host,
+  user: dbConfig.user,
+  password: dbConfig.password,
+  database: dbConfig.database,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
@@ -16,9 +24,9 @@ const initDatabase = async () => {
   try {
     // First connect without database to create it
     const tempPool = mysql.createPool({
-      host: 'localhost',
-      user: 'root',
-      password: '',
+      host: dbConfig.host,
+      user: dbConfig.user,
+      password: dbConfig.password,
       waitForConnections: true,
       connectionLimit: 2,
       queueLimit: 0
