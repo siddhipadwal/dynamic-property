@@ -10,12 +10,31 @@ export default function FeaturedProperties() {
     const [activeTab, setActiveTab] = useState("all-properties");
     const [loading, setLoading] = useState(true);
 
+    // Load saved order from localStorage
+    const getSavedOrder = () => {
+        try {
+            const saved = localStorage.getItem('property_order');
+            return saved ? JSON.parse(saved) : {};
+        } catch {
+            return {};
+        }
+    };
+
+    // Sort properties by saved order
+    const sortPropertiesByOrder = (props) => {
+        const order = getSavedOrder();
+        if (Object.keys(order).length === 0) return props;
+        return [...props].sort((a, b) => (order[a.id] || 999) - (order[b.id] || 999));
+    };
+
     const fetchProperties = async () => {
         try {
             const response = await fetch('/api/properties');
             const data = await response.json();
             if (data.properties) {
-                setProperties(data.properties);
+                // Apply localStorage order
+                const sortedProperties = sortPropertiesByOrder(data.properties);
+                setProperties(sortedProperties);
             }
             setLoading(false);
         } catch (error) {
@@ -28,39 +47,26 @@ export default function FeaturedProperties() {
         fetchProperties();
     }, []);
 
-    // Debug logging
-    console.log('Active Tab:', activeTab);
-    console.log('Total Properties:', properties.length);
-    console.log('Sample Property:', properties[0]);
-
     const filteredProperties = properties.filter(property => {
         if (activeTab === "all-properties") return true;
         
-        // For Buy - include Under Construction, Sale category, or Residential category
+        // For Buy - show only Sale properties
         if (activeTab === "ForBuy") {
-            const match = property.status === "Under Construction" || 
-                          property.category === "Sale" || 
-                          property.category === "Residential";
-            console.log('ForBuy - Property:', property.name, 'status:', property.status, 'category:', property.category, 'match:', match);
-            return match;
+            return property.category === "Sale";
         }
         
-        // For Rent - include Rent category or Commercial category
+        // For Rent - show message (no properties)
         if (activeTab === "ForRent") {
-            const match = property.category === "Rent" || property.category === "Commercial";
-            console.log('ForRent - Property:', property.name, 'category:', property.category, 'match:', match);
-            return match;
+            return false;
         }
         
-        // Co-living
+        // Co-living - show message (no properties)
         if (activeTab === "co-living2") {
-            return property.category === "Co-living";
+            return false;
         }
         
         return true;
     });
-    
-    console.log('Filtered Properties Count:', filteredProperties.length);
 
     return (
         <section className="featured-properties py-[80px] lg:py-[125px]">
@@ -145,8 +151,8 @@ export default function FeaturedProperties() {
                                             </h3>
 
                                             <p className="text-gray-500 max-w-md">
-                                                We currently don’t have any properties listed here.
-                                                If you have one, we’d love to hear from you 💌
+                                                We currently don't have any properties listed here.
+                                                If you have one, we'd love to hear from you 💌
                                             </p>
 
                                             <Link
